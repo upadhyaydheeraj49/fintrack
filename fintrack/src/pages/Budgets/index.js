@@ -1,6 +1,9 @@
 import axios from 'axios';
 import Cookies from 'js-cookie';
 import React, { Component } from 'react';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 import {BudgetContainer, Container, HeaderSection, Title, Subtitle, BudgetCard, BudgetDetails, BudgetTitle, BudgetAmount, BudgetCategory, Button, ModalBackground, ModalContent, Input, FormButton, SelectEl, OptionEl} from './styledComponents';
 import Sidebar from '../../components/Sidebar'
 
@@ -13,6 +16,7 @@ class Budget extends Component {
     category: '',
     editingId: null,
     filterType: 'month',
+    toastMessage: '',
   };
   
     componentDidMount() {
@@ -58,6 +62,14 @@ class Budget extends Component {
     closeModal = () => {
       this.setState({ showModal: false });
     };
+
+    notify = () => {
+      // console.log('called')
+      const {toastMessage} = this.state
+      setTimeout(() => {
+        toast.success(toastMessage);
+      }, 100);
+    }
   
     handleChange = event => {
       this.setState({ [event.target.name]: event.target.value });
@@ -78,9 +90,11 @@ class Budget extends Component {
         if (editingId) {
           // Update Budget
           await axios.put(`http://localhost:4000/api/budgets/${editingId}`, budgetData, { headers });
+          this.setState({ toastMessage: 'Budget updated successfully !' }, this.notify);
         } else {
           // Add New Budget
           await axios.post('http://localhost:4000/api/budgets', budgetData, { headers });
+          this.setState({ toastMessage: 'Budget added successfully !' }, this.notify);
         }
         this.fetchBudgets();
         this.closeModal();
@@ -97,6 +111,7 @@ class Budget extends Component {
   
       try {
         await axios.delete(`http://localhost:4000/api/budgets/${id}`, { headers });
+        this.setState({toastMessage: "Budget deleted successfully !"}, this.notify)
         this.fetchBudgets();
       } catch (error) {
         console.error('Error deleting budget:', error);
@@ -128,6 +143,7 @@ class Budget extends Component {
               <OptionEl value="month">Month</OptionEl>
               <OptionEl value="year">Year</OptionEl>
           </SelectEl>
+          <ToastContainer position="bottom-center" autoClose={3000} theme='colored' />
           {budgets.map(budget => (
             <BudgetCard key={budget.id}>
               <BudgetDetails>

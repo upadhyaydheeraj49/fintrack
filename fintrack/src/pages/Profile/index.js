@@ -54,33 +54,47 @@ class Profile extends Component {
     if (loading) return <p>Loading profile...</p>;
 
     return (
+      <div style={styles.mainContainer}>
       <div style={styles.container}>
         <h2>My Profile</h2>
-       <img src='https://static.vecteezy.com/system/resources/previews/036/280/651/original/default-avatar-profile-icon-social-media-user-image-gray-avatar-icon-blank-profile-silhouette-illustration-vector.jpg' alt="Avatar" style={styles.avatar} />
+        <img src='https://static.vecteezy.com/system/resources/previews/024/183/525/original/avatar-of-a-man-portrait-of-a-young-guy-illustration-of-male-character-in-modern-color-style-vector.jpg' alt="Avatar" style={styles.avatar} />
         <form onSubmit={this.handleSubmit} style={styles.form}>
-          <label>Name</label>
-          <input type="text" name="name" value={name} onChange={this.handleChange} required />
+          <label style={styles.label}>Name</label>
+          <input style={styles.input} type="text" name="name" value={name} onChange={this.handleChange} required />
 
-          <label>Email (read-only)</label>
-          <input type="email" value={email} disabled />
+          <label style={styles.label}>Email (read-only)</label>
+          <input style={styles.input} type="email" value={email} disabled />
 
-          <button type="submit">Update Profile</button>
+          <button style={styles.button} type="submit">Update Profile</button>
         </form>
         {success && <p style={{ color: 'green' }}>{success}</p>}
         {error && <p style={{ color: 'red' }}>{error}</p>}
+      </div>
       </div>
     );
   }
 }
 
 const styles = {
+  mainContainer: {
+    width: "100vw",
+    height: "100vh",
+    background: 'radial-gradient( #cce6ff, #ccddff, #ffffff)',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+
   container: {
-    maxWidth: '400px',
+    width: '400px',
     margin: '2rem auto',
     padding: '1.5rem',
-    backgroundColor: '#fff',
+    backgroundColor: '#b3ccff',
     borderRadius: '12px',
-    boxShadow: '0px 0px 10px rgba(0,0,0,0.1)'
+    boxShadow: '0px 0px 10px #6699ff',
+    display: "flex",
+    flexDirection: 'column',
+    alignItems: 'center'
   },
   avatar: {
     width: '100px',
@@ -93,6 +107,30 @@ const styles = {
     display: 'flex',
     flexDirection: 'column',
     gap: '1rem'
+  },
+  label: {
+    color: '#001a4d',
+    fontSize: '17px',
+    fontFamily: 'Roboto'
+  },
+  input: {
+    outline: 'none',
+    border: '1px solid #001a4d',
+    borderRadius: '8px',
+    padding: '8px 10px',
+    width: '300px'
+  },
+  button: {
+    color: '#E8F1FA',
+    backgroundColor: '#2277EC',
+    fontSize: '15px',
+    fontFamily: 'Roboto',
+    padding: '8px 15px',
+    border: 'none',
+    borderRadius: '5px',
+    outline: 'none',
+    cursor: 'pointer',
+    alignSelf: 'center'
   }
 };
 

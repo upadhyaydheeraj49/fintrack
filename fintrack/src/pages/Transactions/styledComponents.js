@@ -59,3 +59,34 @@ font-weight: 600;
 color: ${(props) => (props.type === 'income' ? '#22c55e' : '#ef4444')};
 margin-right: 20px;
 `;
+
+export const AddWithAIContainer = styled.div`
+display: flex;
+align-items: center;
+width: 80%;
+`
+
+export const AddWithAIInput = styled.input`
+width: 80%;
+padding: 10px 15px;
+border-radius: 8px;
+border: 1px solid #000000;
+margin-right: 20px;
+font-size: 17px;
+`
+
+export const AddWithAIButton = styled.button`
+color: #E8F1FA;
+background-color:rgb(95, 71, 201);
+font-size: 15px;
+font-family: 'Roboto';
+padding: 8px 15px;
+border: none;
+border-radius: 5px;
+outline: none;
+display: flex;
+align-items: center;
+justify-content: space-between;
+cursor: pointer;
+width: 180px;
+`

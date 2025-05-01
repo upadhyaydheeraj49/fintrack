@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import globe2 from '../../assets/images/globe2.png'
 
 export const DashboardContainer = styled.div`
   max-width: 100vw;
@@ -120,3 +121,24 @@ export const FailureImage = styled.img`
   width: 250px;
   margin-bottom: 20px;
 `;
+
+export const RightContainer = styled.div`
+width: 25%;
+border-left: 1px solid #ffffff;
+padding-top: 40px;
+display: none;
+@media screen and (width > 90px) {
+display: flex;
+flex-direction: column;
+justify-content: flex-end;`
+
+export const RightCard = styled.div`
+width: 70%;
+max-width: 500px;
+height: 250px;
+background-image: url(${globe2});
+background-size: cover;
+border-radius: 10px;
+margin: 20px auto;
+padding: 80px 40px;
+}`

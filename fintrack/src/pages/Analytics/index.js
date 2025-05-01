@@ -2,21 +2,21 @@ import axios from 'axios';
 import Cookies from 'js-cookie';
 import React, { Component } from 'react';
 import {
-    Bar,
-    BarChart,
-    CartesianGrid,
-    Cell,
-    Legend,
-    Line,
-    LineChart,
-    Pie,
-    PieChart,
-    ResponsiveContainer,
-    Tooltip,
-    XAxis, YAxis
+  Bar,
+  BarChart,
+  CartesianGrid,
+  Cell,
+  Legend,
+  Line,
+  LineChart,
+  Pie,
+  PieChart,
+  ResponsiveContainer,
+  Tooltip,
+  XAxis, YAxis
 } from 'recharts';
-import {AnalyticsContainer, ChartCard, ChartSection, Container, Title, ChartSideContainer, SelectEl, OptionEl, Header } from './styledComponents';
 import Sidebar from '../../components/Sidebar';
+import { AnalyticsContainer, ChartCard, ChartSection, ChartSideContainer, Container, Header, OptionEl, RightCard, SelectEl, Title } from './styledComponents';
 
   const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', '#AA336A', '#FF6666'];
 
@@ -25,7 +25,7 @@ import Sidebar from '../../components/Sidebar';
         monthlyTransactions: [],
         incomeExpenseData: [],
         categoryDistribution: [],
-        filterType: 'month'
+        filterType: 'year'
       }
   
     componentDidMount() {
@@ -141,6 +141,11 @@ import Sidebar from '../../components/Sidebar';
                   <Legend />
                 </PieChart>
               </ResponsiveContainer>
+              <RightCard>
+                        <h2 style={{color: '#f2f2f2'}}>Get Financial Advice</h2>
+                        <p style={{color: '#f2f2f2'}}>On FinTrack, Finance AI can assist you to manage your financial records....</p>
+                        <a style={{color: '#0066ff', textDecoration: 'none'}} href="/finance_ai">Get Advice</a>
+                    </RightCard>
             </ChartCard>
           </ChartSection>
         </Container>

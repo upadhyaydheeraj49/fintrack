@@ -6,7 +6,7 @@ import { Bar, BarChart, CartesianGrid, Legend, ResponsiveContainer, Tooltip, XAx
 import errorView from '../../assets/images/error-view.png';
 import globe from '../../assets/images/globe.png';
 import Sidebar from '../../components/Sidebar';
-import { BalanceCard, CategoryCard, ChartContainer, Container, DashboardContainer, FailureContainer, FailureImage, GlobeImage, Header, LoaderContainer, OptionEl, SelectEl, SummaryCard, SummaryCards, TopCategories } from './styledComponents';
+import { BalanceCard, CategoryCard, ChartContainer, Container, DashboardContainer, FailureContainer, FailureImage, GlobeImage, Header, LoaderContainer, OptionEl, RightContainer, SelectEl, SummaryCard, SummaryCards, TopCategories, RightCard } from './styledComponents';
 // Failure View Component
 const FailureView = () => (
     <FailureContainer>
@@ -45,7 +45,7 @@ class Dashboard extends Component {
         totalSavings: 0,
         categories: [],
         costsData: [],
-        filterType: 'month',
+        filterType: 'year',
         loading: true,
         error: false,
         userData: {
@@ -175,6 +175,13 @@ class Dashboard extends Component {
                         </ResponsiveContainer>
                     </ChartContainer>
                 </Container>
+                <RightContainer>
+                    <RightCard>
+                        <h2 style={{color: '#f2f2f2'}}>Visualize your finances</h2>
+                        <p style={{color: '#f2f2f2'}}>On FinTrack you can easily visualize your finances through various graphs....</p>
+                        <a style={{color: '#0000ff', textDecoration: 'none'}} href="/analytics">Visualize here</a>
+                    </RightCard>
+                </RightContainer>
         </DashboardContainer>
         );
     };

@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import cardImage from '../../assets/images/cardImage.jpg';
 
 export const AnalyticsContainer = styled.div`
   max-width: 100vw;
@@ -9,6 +10,9 @@ export const Container = styled.div`
   width: 70vw;
   height: 100vh;
   overflow-y: auto;
+  &&::-webkit-scrollbar {
+            display: none;
+}
 `;
 
 export const Title = styled.h2`
@@ -57,3 +61,18 @@ align-self: flex-end;
 export const OptionEl = styled.option`
 font-size: 16px;
 `
+export const RightCard = styled.div`
+width: 70%;
+max-width: 500px;
+max-height: 250px;
+display: none;
+background-image: url(${cardImage});
+background-size: cover;
+border-radius: 10px;
+margin: 20px auto;
+margin-top: 40px;
+padding: 80px 40px;
+@media screen and (min-width: 1285px) {
+  display: block;
+}
+}`

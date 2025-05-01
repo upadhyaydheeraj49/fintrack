@@ -17,7 +17,7 @@ const Navbar = () => {
                 <NavItem><NavLink href="/dashboard">Dashboard</NavLink></NavItem>
                 <NavItem><NavLink href="/transactions">Transactions</NavLink></NavItem>
                 <NavItem><NavLink href='/budgets'>Budgets</NavLink></NavItem>
-                <NavItem><NavLink href='finance-ai'>Finance AI</NavLink></NavItem>
+                <NavItem><NavLink href='/finance_ai'>Finance AI</NavLink></NavItem>
             </NavItemsContainer>
             <div>
                 <LoginButton onClick={redirectToLogin}>Login</LoginButton>

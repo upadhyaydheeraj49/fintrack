@@ -1,12 +1,14 @@
 import axios from 'axios';
 import Cookies from 'js-cookie';
 import React, { Component } from 'react';
-import {Navigate} from 'react-router-dom'
+import { Navigate } from 'react-router-dom';
 
 // import fintracklogo from '../../assets/logo/fintracklogo.png';
+import loginImage from '../../assets/images/loginImage.png';
+import loginLogo from '../../assets/images/loginLogo.jpg';
 import { Button } from '../../components/Button';
 import { Input } from '../../components/Input';
-import { ErrorText, Label, LoginCard, LoginContainer, LoginImage, MobileLogoImage, DesktopLogoImage } from './styledComponents';
+import { DesktopLogoImage, ErrorText, Label, LoginCard, LoginContainer, LoginImage, MobileLogoImage } from './styledComponents';
 
 class Login extends Component {
     state = {
@@ -60,16 +62,16 @@ class Login extends Component {
       return (
         <LoginContainer>
           <MobileLogoImage
-          src="https://assets.ccbp.in/frontend/react-js/nxt-trendz-logo-img.png"
+          src={loginLogo}
           alt="website logo"
         />
         <LoginImage
-          src="https://assets.ccbp.in/frontend/react-js/nxt-trendz-login-img.png"
+          src={loginImage}
           alt="website login"
         />
           <LoginCard>
           <DesktopLogoImage
-            src="https://assets.ccbp.in/frontend/react-js/nxt-trendz-logo-img.png"
+            src={loginLogo}
             alt="website logo"
           />
             <form onSubmit={this.handleSubmit}>
@@ -102,7 +104,7 @@ class Login extends Component {
               </Button>
   
               {errorMessage && <ErrorText>{errorMessage}</ErrorText>}
-              <div style={{textAlign: 'center'}}>or <a href='/signup' style={{color: '#0b69ff', textDecoration: 'none', fontSize: '16px', fontWeight: '600'}}>Signup</a></div>
+              <div style={{textAlign: 'center'}}>Don't have an account? <a href='/signup' style={{color: '#0b69ff', textDecoration: 'none', fontSize: '16px', fontWeight: '600'}}>Signup</a></div>
             </form>
           </LoginCard>
         </LoginContainer>

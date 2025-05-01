@@ -1,10 +1,14 @@
 import axios from 'axios';
 import Cookies from 'js-cookie';
 import React, { Component } from 'react';
+import { RiRobot2Fill } from "react-icons/ri";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 import { Button } from '../../components/Button';
 import { Input } from '../../components/Input';
-import {TransactionContainer, Amount, Container, Form, Heading, TransactionCard, TransactionInfo, TransactionList } from './styledComponents';
-import Sidebar from '../../components/Sidebar'
+import Sidebar from '../../components/Sidebar';
+import { Amount, Container, Form, Heading, TransactionCard, TransactionContainer, TransactionInfo, TransactionList, AddWithAIContainer, AddWithAIInput, AddWithAIButton } from './styledComponents';
 
 class Transactions extends Component {
       state = {
@@ -12,6 +16,8 @@ class Transactions extends Component {
         loading: false,
         addingOrUpdating: false,
         editingId: null,
+        addAIText: '',
+        toastMessage: '',
         formData: {
           title: '',
           amount: '',
@@ -50,6 +56,14 @@ class Transactions extends Component {
         },
       }));
     };
+
+    notify = () => {
+      // console.log('called')
+      const {toastMessage} = this.state
+      setTimeout(() => {
+        toast.success(toastMessage);
+      }, 100);
+    }
   
     handleAddOrUpdateTransaction = async (e) => {
       e.preventDefault();
@@ -61,10 +75,14 @@ class Transactions extends Component {
       try {
         if (editingId) {
           await axios.put(`http://localhost:4000/api/transactions/${editingId}`, formData,{headers});
+          this.setState({ toastMessage: 'Transaction updated successfully !' }, this.notify);
+          
         } else {
             // console.log("Here")
           await axios.post('http://localhost:4000/api/transactions', formData, {headers});
+          this.setState({ toastMessage: 'Transaction added successfully !' }, this.notify)
         }
+        
         this.setState({
           formData: { title: '', amount: '', date: '', category: '', type: 'expense' },
           editingId: null,
@@ -76,7 +94,7 @@ class Transactions extends Component {
         this.setState({ addingOrUpdating: false });
       }
     };
-  
+
     handleEdit = (transaction) => {
       this.setState({
         editingId: transaction.id,
@@ -94,15 +112,48 @@ class Transactions extends Component {
       try {
         const token = Cookies.get('jwtToken')
         const headers = {Authorization: `Bearer ${token}`}
+        
         await axios.delete(`http://localhost:4000/api/transactions/${id}`, {headers});
+        this.setState({toastMessage: "Transaction deleted successfully !"}, this.notify)
         this.fetchTransactions();
       } catch (error) {
         console.error('Failed to delete transaction', error);
       }
     };
+
+    addWithAI = async () => {
+      const {addAIText} = this.state
+      if (addAIText !== "") {
+        const token = Cookies.get('jwtToken')
+        const headers = {Authorization: `Bearer ${token}`}
+        axios.defaults.headers.post['Content-Type'] ='application/json;charset=utf-8';
+        axios.defaults.headers.post['Access-Control-Allow-Origin'] = '*';
+        try {
+          const aiResponse = await axios.post('https://fintrack-api-ipi5.onrender.com/predict', {text: addAIText})
+          // console.log(aiResponse.data)
+          const {amount, category, title, type} = aiResponse.data
+
+          const dateObj = new Date()
+          const date = dateObj.toLocaleDateString('en-GB')
+
+          console.log(dateObj.getDate())
+          const tData = {amount, category, title, type, date}
+          console.log(tData)
+          await axios.post('http://localhost:4000/api/transactions', tData, {headers});
+          this.fetchTransactions();
+          this.setState({ toastMessage: 'Transaction added successfully !' , addAIText: ''}, this.notify)
+        } catch (error) {
+          console.error('Failed to categorize transaction', error);
+      }
+      }
+  }
+
+    updateAIInputTText = e => {
+      this.setState({addAIText: e.target.value})
+    }
   
     render() {
-      const { transactions, loading, formData, addingOrUpdating, editingId } = this.state;
+      const { transactions, loading, formData, addingOrUpdating, editingId, addAIText } = this.state;
   
       return (
         <TransactionContainer>
@@ -156,11 +207,17 @@ class Transactions extends Component {
               {editingId ? 'Update Transaction' : 'Add Transaction'}
             </Button>
           </Form>
+          <AddWithAIContainer>
+            <AddWithAIInput placeholder='Enter your text' value={addAIText} onChange={this.updateAIInputTText} />
+            <AddWithAIButton onClick={this.addWithAI}>Add With AI <RiRobot2Fill style={{fontSize: '25px'}} /></AddWithAIButton>
+          </AddWithAIContainer>
+            
           {/* Transactions */}
           {loading ? (
             <p>Loading...</p>
           ) : (
             <>
+            <ToastContainer position="bottom-center" autoClose={3000} theme='colored' />
           <Heading>Recent Transactions</Heading>
             <TransactionList>
               {transactions.length > 0 ? (

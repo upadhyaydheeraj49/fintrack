@@ -1,9 +1,11 @@
 import axios from 'axios';
 import React, { Component } from 'react';
 
+import loginImage from '../../assets/images/loginImage.png';
+import loginLogo from '../../assets/images/loginLogo.jpg';
 import { Button } from '../../components/Button';
 import { Input } from '../../components/Input';
-import { ErrorText, Label, SignupCard, SignupContainer, Title, MobileLogoImage, DesktopLogoImage, LoginImage } from './styledComponents';
+import { DesktopLogoImage, ErrorText, Label, LoginImage, MobileLogoImage, SignupCard, SignupContainer, Title } from './styledComponents';
 
 class Signup extends Component {
     state = {
@@ -58,16 +60,16 @@ class Signup extends Component {
       return (
         <SignupContainer>
           <MobileLogoImage
-                    src="https://assets.ccbp.in/frontend/react-js/nxt-trendz-logo-img.png"
+                    src={loginLogo}
                     alt="website logo"
                   />
                   <LoginImage
-                    src="https://assets.ccbp.in/frontend/react-js/nxt-trendz-login-img.png"
+                    src={loginImage}
                     alt="website login"
                   />
           <SignupCard>
             <DesktopLogoImage
-                        src="https://assets.ccbp.in/frontend/react-js/nxt-trendz-logo-img.png"
+                        src={loginLogo}
                         alt="website logo"
                       />
             <Title>Create Account</Title>
@@ -121,7 +123,7 @@ class Signup extends Component {
               </Button>
   
               {errorMessage && <ErrorText>{errorMessage}</ErrorText>}
-              <div style={{textAlign: 'center'}}>or <a href='/login' style={{color: '#0b69ff', textDecoration: 'none', fontSize: '16px', fontWeight: '600'}}>Login</a></div>
+              <div style={{textAlign: 'center'}}>Already have account <a href='/login' style={{color: '#0b69ff', textDecoration: 'none', fontSize: '16px', fontWeight: '600'}}>Login</a></div>
             </form>
           </SignupCard>
         </SignupContainer>

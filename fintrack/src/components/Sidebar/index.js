@@ -1,10 +1,10 @@
-import { FaChartLine, FaFileAlt, FaMoneyBillWave, FaRobot, FaTachometerAlt, FaWallet } from 'react-icons/fa';
-import {FaArrowRightFromBracket} from 'react-icons/fa6'
-import {Link, useNavigate} from 'react-router-dom'
-import Cookies from 'js-cookie'
+import Cookies from 'js-cookie';
+import { FaChartLine, FaMoneyBillWave, FaRobot, FaTachometerAlt, FaWallet } from 'react-icons/fa';
+import { FaArrowRightFromBracket } from 'react-icons/fa6';
 import { RxAvatar } from "react-icons/rx";
+import { Link, useNavigate } from 'react-router-dom';
 import fintracklogo from '../../assets/logo/fintracklogo.png';
-import { Logo, Menu, MenuItem, SidebarContainer, BottomSidebarContainer, LogoutButton, AvatarContainer } from './styledComponents';
+import { AvatarContainer, BottomSidebarContainer, Logo, LogoutButton, Menu, MenuItem, SidebarContainer } from './styledComponents';
 
 const Sidebar = () => {
     const navigate = useNavigate()
@@ -27,8 +27,6 @@ const Sidebar = () => {
                                 <MenuItem as={Link} to="/dashboard" id="dashboard" activ={activeTabItem}><FaTachometerAlt /> Dashboard </MenuItem>
                                 <MenuItem as={Link} to="/transactions" id="transactions" activ={activeTabItem}><FaMoneyBillWave /> Transactions</MenuItem>
                                 <MenuItem as={Link} to="/budgets" id="budgets" activ={activeTabItem}><FaWallet /> Budgets</MenuItem>
-                                <MenuItem as={Link} to="/documents" id="documents" activ={activeTabItem}><FaFileAlt /> Documents</MenuItem>
-                                <MenuItem as={Link} to="/accounts" id="accounts" activ={activeTabItem}><FaWallet /> Accounts</MenuItem>
                                 <MenuItem as={Link} to="/analytics" id="analytics" activ={activeTabItem}><FaChartLine /> Analytics</MenuItem>
                                 <MenuItem as={Link} to="/finance_ai" id="finance-ai" activ={activeTabItem}><FaRobot /> Finance AI</MenuItem>
                             </Menu>
