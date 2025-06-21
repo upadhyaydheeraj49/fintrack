@@ -10,6 +10,7 @@ box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.32);
 @media screen and (min-width: 900px) {
 padding: 15px 10%;
 }
+
 `
 export const NavLogo = styled.img`
 width: 150px;`
@@ -18,6 +19,9 @@ export const NavItemsContainer = styled.ul`
 list-style-type: none;
 display: flex;
 margin: 0px;
+@media screen and (width <900px) {
+    display: none;
+}
 `
 
 export const NavItem = styled.li`

@@ -9,7 +9,10 @@ export const Container = styled.div`
   padding: 30px;
   background-color: #f8f9fb;
   max-height: 100vh;
-  width: 70vw;
+  width: 100%;
+  @media screen and (width >899px) {
+    width: 70vw;
+  }
   overflow-y: auto;
   display: flex;
   flex-direction: column;
@@ -61,6 +64,13 @@ export const BudgetCategory = styled.p`
   font-size: 16px;
   color: #64748b;
 `;
+export const ButtonsContainer = styled.div`
+display: flex;
+flex-direction: column;
+@media screen and (width >899px) {
+    flex-direction: row;
+}
+`
 
 export const Button = styled.button`
   background-color: #3b82f6;
@@ -69,7 +79,7 @@ export const Button = styled.button`
   border: none;
   border-radius: 8px;
   font-size: 16px;
-  margin: 0 8px;
+  margin: 5px 8px;
   cursor: pointer;
 
   &:hover {

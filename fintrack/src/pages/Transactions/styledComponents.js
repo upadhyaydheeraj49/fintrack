@@ -6,11 +6,14 @@ display: flex;`
 
 export const Container = styled.div`
 padding: 2rem;
-width: 70vw;
+width: 100vw;
 max-height: 100vh;
 overflow-y: auto;
 &::-webkit-scrollbar {
             display: none;
+}
+@media screen and (width >899px) {
+    width: 70vw;
 }
 `;
 
@@ -55,30 +58,47 @@ flex-direction: column;
 `;
 
 export const Amount = styled.p`
+width: 70px;
 font-weight: 600;
 color: ${(props) => (props.type === 'income' ? '#22c55e' : '#ef4444')};
 margin-right: 20px;
 `;
 
+export const ButtonContainer = styled.div`
+display: flex;
+flex-direction: column;
+justify-content: space-between;
+@media screen and (width >899px) {
+    flex-direction: row;
+}`
+
 export const AddWithAIContainer = styled.div`
 display: flex;
 align-items: center;
-width: 80%;
+width: 100%;
+@media screen and (width >899px) {
+    width: 80%;
+}
 `
 
 export const AddWithAIInput = styled.input`
-width: 80%;
+width: 100%;
 padding: 10px 15px;
 border-radius: 8px;
 border: 1px solid #000000;
-margin-right: 20px;
-font-size: 17px;
+outline: none;
+margin-right: 10px;
+font-size: 16px;
+@media screen and (width >899px) {
+    width: 80%;
+    margin-right: 20px;
+}
 `
 
 export const AddWithAIButton = styled.button`
 color: #E8F1FA;
 background-color:rgb(95, 71, 201);
-font-size: 15px;
+font-size: 13px;
 font-family: 'Roboto';
 padding: 8px 15px;
 border: none;

@@ -7,7 +7,7 @@ import homeImage from '../../assets/images/homeImage.png';
 import shieldImage from '../../assets/images/shieldImage.png';
 import Navbar from '../../components/Navbar';
 import fintracklogo from '../../assets/logo/fintracklogo.png'
-import { Banner, BannerContainer, BannerContentContainer, BannerDescription, BannerHeading, BannerHeadingSpan, BannerImage, BannerImageContainer, CardLink, CardsContainer, FeatureCard, FeatureCardDescription, FeatureCardHeading, FeatureCardIcon, FeaturesDescription, FeaturesHeading, FeaturesSection, NewFeatureCard, NewFeatureContentCard, NewFeatureDescription, NewFeatureImageCard, NewFeatureImageOuterContainer, NewFeatureSection, PrimaryButton, ShieldImage, AboutUsSection, AboutUsContainer, AboutUsCard, Logo, SocialMediaContainer, AboutUsLabel, AboutUsLabelItem } from './styledComponents';
+import { Banner, BannerContainer, BannerContentContainer, BannerDescription, BannerHeading, BannerHeadingSpan, BannerImage, BannerImageContainer, BannerImageContainerSm, CardLink, CardsContainer, FeatureCard, FeatureCardDescription, FeatureCardHeading, FeatureCardIcon, FeaturesDescription, FeaturesHeading, FeaturesSection, NewFeatureCard, NewFeatureContentCard, NewFeatureDescription, NewFeatureImageCard, NewFeatureImageOuterContainer, NewFeatureSection, PrimaryButton, ShieldImage, AboutUsSection, AboutUsContainer, AboutUsCard, AboutUsCardLegal, Logo, SocialMediaContainer, AboutUsLabel, AboutUsLabelItem } from './styledComponents';
 
 const Home = () => {
     const navigate = useNavigate()
@@ -24,6 +24,9 @@ const Home = () => {
                     <BannerHeading>
                         Smart Finance Management with <BannerHeadingSpan>FinTrack</BannerHeadingSpan>
                     </BannerHeading>
+                    <BannerImageContainerSm>
+                        <BannerImage src={homeImage} />
+                    </BannerImageContainerSm>
                     <BannerDescription>Your Al-powered personal finance assistant designed for Indian
                         users to track expenses, manage budgets, and gain valuable
                         financial insights with support for all major Indian banks.
@@ -112,14 +115,14 @@ const Home = () => {
                             <AboutUsLabelItem>Contact</AboutUsLabelItem>
                         </ul>
                     </AboutUsCard>
-                    <AboutUsCard>
+                    <AboutUsCardLegal>
                         <AboutUsLabel>LEGAL</AboutUsLabel>
                         <ul style={{listStyleType: 'none', paddingLeft: '10px'}}>
                             <AboutUsLabelItem>Privacy Policy</AboutUsLabelItem>
                             <AboutUsLabelItem>Terms of Service</AboutUsLabelItem>
                             <AboutUsLabelItem>Cookie Policy</AboutUsLabelItem>
                         </ul>
-                    </AboutUsCard>
+                    </AboutUsCardLegal>
                 </AboutUsContainer>
                 <hr style={{border: '1px solid rgb(36, 35, 35)'}} />
                 <AboutUsContainer>

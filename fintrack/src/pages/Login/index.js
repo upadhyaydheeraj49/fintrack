@@ -74,7 +74,7 @@ class Login extends Component {
             src={loginLogo}
             alt="website logo"
           />
-            <form onSubmit={this.handleSubmit}>
+            <form style={{padding: '20px'}} onSubmit={this.handleSubmit}>
                 <Label htmlFor='email'>EMAIL</Label>
               <Input
                 id="email"

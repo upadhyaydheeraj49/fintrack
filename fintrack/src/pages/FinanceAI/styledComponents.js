@@ -10,11 +10,13 @@ export const FinanceAIContainer = styled.div`
 
 export const Container = styled.div`
   padding: 20px;
-  height: 100vh;
   display: flex;
   flex-direction: column;
   overflow-y: scroll;
-  width: 70vw;
+  width: 100%;
+  @media screen and (width >899px) {
+    width: 70vw;
+}
   &&::-webkit-scrollbar {
             display: none;
 }
@@ -24,13 +26,13 @@ export const Container = styled.div`
 
 export const FinanceDescription = styled.p`
 // color:rgba(232, 241, 250, 0.72);
-font-size: 16px;
+font-size: 14px;
 font-family: 'Roboto';
 color: #2b2a2a;`
 
 export const ChatboxContainer = styled.div`
 background-color: #e6e6ff;
-width: 80%;
+width: 85%;
 height: 60vh;
 border-radius: 10px;
 padding: 20px;
@@ -40,14 +42,19 @@ justify-content: center;
 box-shadow: 0px 0px 5px 2px #9999ff`
 
 export const RightContainer = styled.div`
-width: 25%;
+width: 100%;
 border-left: 1px solid #ffffff;
-padding: 40px 10px;`
+padding: 10px;
+padding-bottom: 90px;
+@media screen and (width >899px) {
+    width: 25%;
+    padding: 40px 10px;
+}`
 
 export const PrimaryButton = styled.button`
 color: #E8F1FA;
 background-color: #2277EC;
-font-size: 15px;
+font-size: 14px;
 font-family: 'Roboto';
 padding: 8px 15px;
 border: none;
@@ -91,7 +98,7 @@ padding: 10px;
 border-radius: 10px;
 border-bottom-right-radius: 0px;
 color: #ffffff;
-font-size: 16px;
+font-size: 14px;
 font-family: 'Roboto';
 margin: 8px 0px;
 `
@@ -102,7 +109,7 @@ padding: 10px;
 border-radius: 10px;
 border-bottom-left-radius: 0px;
 color: #ffffff;
-font-size: 16px;
+font-size: 14px;
 font-family: 'Roboto';
 margin: 8px 0px;
 margin-left: auto;

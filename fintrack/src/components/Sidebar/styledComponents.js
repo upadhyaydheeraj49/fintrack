@@ -12,6 +12,10 @@ flex-direction: column;
 padding: 20px;
 top: 0;
 left: 0;
+
+@media screen and (width <900px) {
+    display: none;
+}
 `;
 
 export const Logo = styled.img`

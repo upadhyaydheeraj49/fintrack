@@ -17,6 +17,7 @@ import {
 } from 'recharts';
 import Sidebar from '../../components/Sidebar';
 import { AnalyticsContainer, ChartCard, ChartSection, ChartSideContainer, Container, Header, OptionEl, RightCard, SelectEl, Title } from './styledComponents';
+import BottomBarMobile from '../../components/BottomBarMobile';
 
   const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', '#AA336A', '#FF6666'];
 
@@ -145,10 +146,11 @@ import { AnalyticsContainer, ChartCard, ChartSection, ChartSideContainer, Contai
                         <h2 style={{color: '#f2f2f2'}}>Get Financial Advice</h2>
                         <p style={{color: '#f2f2f2'}}>On FinTrack, Finance AI can assist you to manage your financial records....</p>
                         <a style={{color: '#0066ff', textDecoration: 'none'}} href="/finance_ai">Get Advice</a>
-                    </RightCard>
+              </RightCard>
             </ChartCard>
           </ChartSection>
         </Container>
+        <BottomBarMobile />
         </AnalyticsContainer>
       );
     }

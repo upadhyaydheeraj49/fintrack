@@ -8,7 +8,8 @@ import 'react-toastify/dist/ReactToastify.css';
 import { Button } from '../../components/Button';
 import { Input } from '../../components/Input';
 import Sidebar from '../../components/Sidebar';
-import { Amount, Container, Form, Heading, TransactionCard, TransactionContainer, TransactionInfo, TransactionList, AddWithAIContainer, AddWithAIInput, AddWithAIButton } from './styledComponents';
+import { AddWithAIButton, AddWithAIContainer, AddWithAIInput, Amount, Container, Form, Heading, TransactionCard, TransactionContainer, TransactionInfo, TransactionList, ButtonContainer } from './styledComponents';
+import BottomBarMobile from '../../components/BottomBarMobile';
 
 class Transactions extends Component {
       state = {
@@ -72,7 +73,14 @@ class Transactions extends Component {
       const token = Cookies.get('jwtToken')
         const headers = {Authorization: `Bearer ${token}`}
         // console.log(formData)
-      try {
+        
+        try {
+        
+          const res = await axios.get('http://localhost:4000/api/analytics/summary?filterType=year', {headers});
+          const {balance = 0} = res.data
+          const amount = parseInt(formData.amount)
+          if (amount <= balance) {
+            try {
         if (editingId) {
           await axios.put(`http://localhost:4000/api/transactions/${editingId}`, formData,{headers});
           this.setState({ toastMessage: 'Transaction updated successfully !' }, this.notify);
@@ -82,7 +90,9 @@ class Transactions extends Component {
           await axios.post('http://localhost:4000/api/transactions', formData, {headers});
           this.setState({ toastMessage: 'Transaction added successfully !' }, this.notify)
         }
-        
+
+        const amount = parseInt(formData.amount)
+        this.checkIsSpendingMore(formData.category)
         this.setState({
           formData: { title: '', amount: '', date: '', category: '', type: 'expense' },
           editingId: null,
@@ -93,6 +103,18 @@ class Transactions extends Component {
       } finally {
         this.setState({ addingOrUpdating: false });
       }
+          }
+          else {
+            setTimeout(() => {
+                  toast.error("Your balance is low !", 90000)
+                }, 100);
+          }
+        }
+        catch(e) {
+          console.log("Error")
+        }
+        
+      
     };
 
     handleEdit = (transaction) => {
@@ -121,6 +143,36 @@ class Transactions extends Component {
       }
     };
 
+    checkIsSpendingMore = async (category) => {
+      const token = Cookies.get('jwtToken');
+
+      const analyticsData = await axios.get('http://localhost:4000/api/analytics/summary?filterType=year', { headers: { Authorization: `Bearer ${token}` } })
+      const response = await axios.get('http://localhost:4000/api/budgets?filterType=month', { headers: { Authorization: `Bearer ${token}` } });
+        const budgets = response.data
+        
+        const {categorySpend} = analyticsData.data
+        const formattedData = Object.entries(categorySpend).map(([key, value]) => ({
+          'category': key,
+          'value': value
+        }));
+        
+        const matchedBudget = budgets.find(budget => budget.category === category)
+        console.log(category)
+        
+        if (matchedBudget !== undefined) {
+          const spendingCategory = formattedData.find(item => item.category === category)
+          const isSpendingMore = matchedBudget.amount < spendingCategory.value
+
+          if (isSpendingMore) {
+            setTimeout(() => {
+              toast.warning("You are spending more than your budget !", 90000)
+            }, 100);
+          }
+        }
+        
+        
+    }
+
     addWithAI = async () => {
       const {addAIText} = this.state
       if (addAIText !== "") {
@@ -136,9 +188,9 @@ class Transactions extends Component {
           const dateObj = new Date()
           const date = dateObj.toLocaleDateString('en-GB')
 
-          console.log(dateObj.getDate())
+          // console.log(dateObj.getDate())
           const tData = {amount, category, title, type, date}
-          console.log(tData)
+          // console.log(tData)
           await axios.post('http://localhost:4000/api/transactions', tData, {headers});
           this.fetchTransactions();
           this.setState({ toastMessage: 'Transaction added successfully !' , addAIText: ''}, this.notify)
@@ -231,12 +283,14 @@ class Transactions extends Component {
                       <Amount type={transaction.type}>
                         {transaction.type === 'income' ? '+' : '-'}₹{transaction.amount}
                       </Amount>
-                      <Button variant="outline" size="small" onClick={() => this.handleEdit(transaction)}>
-                        Edit
-                      </Button>
-                      <Button variant="danger" size="small" onClick={() => this.handleDelete(transaction.id)}>
-                        Delete
-                      </Button>
+                      <ButtonContainer>
+                        <Button variant="outline" size="small" onClick={() => this.handleEdit(transaction)}>
+                          Edit
+                        </Button>
+                        <Button variant="danger" size="small" onClick={() => this.handleDelete(transaction.id)}>
+                          Delete
+                        </Button>
+                      </ButtonContainer>
                     </div>
                   </TransactionCard>
                 ))
@@ -247,6 +301,7 @@ class Transactions extends Component {
             </>
           )}
         </Container>
+        <BottomBarMobile/>
         </TransactionContainer>
       );
     }

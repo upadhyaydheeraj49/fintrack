@@ -1,11 +1,12 @@
 import axios from 'axios';
 import Cookies from 'js-cookie';
-import React, { Component } from 'react';
+import { Component } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-import {BudgetContainer, Container, HeaderSection, Title, Subtitle, BudgetCard, BudgetDetails, BudgetTitle, BudgetAmount, BudgetCategory, Button, ModalBackground, ModalContent, Input, FormButton, SelectEl, OptionEl} from './styledComponents';
-import Sidebar from '../../components/Sidebar'
+import BottomBarMobile from '../../components/BottomBarMobile';
+import Sidebar from '../../components/Sidebar';
+import { BudgetAmount, BudgetCard, BudgetCategory, BudgetContainer, BudgetDetails, BudgetTitle, Button, ButtonsContainer, Container, FormButton, HeaderSection, Input, ModalBackground, ModalContent, OptionEl, SelectEl, Subtitle, Title } from './styledComponents';
 
 class Budget extends Component {
   state = {
@@ -151,10 +152,10 @@ class Budget extends Component {
                 <BudgetAmount>₹{budget.amount}</BudgetAmount>
                 <BudgetCategory>{budget.category}</BudgetCategory>
               </BudgetDetails>
-              <div>
+              <ButtonsContainer>
                 <Button onClick={() => this.openModal(budget)}>Edit</Button>
                 <Button onClick={() => this.handleDelete(budget.id)} style={{ backgroundColor: '#ef4444' }}>Delete</Button>
-              </div>
+              </ButtonsContainer>
             </BudgetCard>
           ))}
   
@@ -193,6 +194,7 @@ class Budget extends Component {
           </ModalBackground>
   
         </Container>
+        <BottomBarMobile />
         </BudgetContainer>
       );
     }

@@ -1,8 +1,7 @@
 import styled from 'styled-components'
 
 export const BannerContainer = styled.div`
-min-width: 768px;
-max-width: 100vw;
+width: 100vw;
 min-height: 80vh;
 background-color: #0E3D64;
 `
@@ -23,6 +22,9 @@ flex-direction: column;
 width: 40%;
 max-width: 500px;
 margin-right: 40px;
+@media screen and (width <900px) {
+    width: 100%;
+}
 `
 export const BannerHeading = styled.h1`
 font-size: 45px;
@@ -45,7 +47,22 @@ border-radius: 10px;
 width: 400px;
 height: 400px;
 overflow: hidden;
-box-shadow: 0px 0px 10px 2px #ffffff`
+box-shadow: 0px 0px 10px 2px #ffffff;
+@media screen and (width <900px) {
+    display: none;
+}
+`
+
+export const BannerImageContainerSm = styled.div`
+background-color: #E8F1FA;
+border-radius: 10px;
+width: 350px;
+height: 400px;
+overflow: hidden;
+box-shadow: 0px 0px 10px 2px #ffffff;
+@media screen and (width >900px) {
+    display: none;
+}`
 
 export const BannerImage = styled.img`
 width: 100%;
@@ -68,6 +85,7 @@ cursor: pointer;
 `
 export const FeaturesSection = styled.div`
 background-color: #E8F1FA;
+
 max-width: 100vw;
 padding: 35px;
 padding-bottom: 80px;
@@ -90,13 +108,17 @@ font-size: 16px;`
 export const CardsContainer = styled.div`
 display: flex;
 justify-content: space-between;
-margin-top: 60px;`
+margin-top: 60px;
+flex-wrap: wrap;`
 
 export const FeatureCard = styled.div`
 background-color: #ffffff;
 padding: 15px;
 border-radius: 10px;
-width: 180px;
+width: 100%;
+@media screen and (width >=900px) {
+    width: 180px;
+}
 flex-grow: 1;
 margin: 10px;
 max-width: 350px;
@@ -157,6 +179,9 @@ export const NewFeatureImageOuterContainer = styled.div`
 background-color: #ffffff;
 border-radius: 10px;
 padding: 20px;
+@media screen and (width <900px) {
+    display: none;
+}
 `
 
 export const NewFeatureImageCard = styled.div`
@@ -177,6 +202,12 @@ justify-content: center;
 export const AboutUsCard = styled.div`
 width: 25%;
 padding-right: 20px;`
+
+export const AboutUsCardLegal = styled(AboutUsCard)`
+@media screen and (width <900px) {
+    display: none;
+}
+`
 
 export const Logo = styled.img`
 width: 150px;`

@@ -6,6 +6,7 @@ import { IoSend } from "react-icons/io5";
 
 import Sidebar from "../../components/Sidebar";
 import { BotReplyContainer, ChatBody, ChatboxContainer, ClientQueryContainer, Container, FinanceAIContainer, FinanceDescription, FormInput, Label, PrimaryButton, QueryInput, QueryInputContainer, RightContainer } from "./styledComponents";
+import BottomBarMobile from '../../components/BottomBarMobile';
 
 let count = 2
 
@@ -106,7 +107,7 @@ class FinanceAI extends Component {
                 </Container>
                 <RightContainer>
                     <h3>Expense Predictor </h3>
-                    <p style={{fontFamily:'Roboto', fontSize: '16px'}}>Easily get the upcomming months expenses in just three steps:</p>
+                    <p style={{fontFamily:'Roboto', fontSize: '14px'}}>Easily get the upcomming months expenses in just three steps:</p>
                     <form style={{display: 'flex', flexDirection: 'column', padding: '10px', borderRadius: '10px', boxShadow: '0px 0px 5px 2px #8c8c8c'}} onSubmit={this.onClickGetBudget}>
                         <Label htmlFor='salary'>SALARY</Label>
                         <FormInput style={{border: '1px solid #000000'}} id="salary" placeholder='Your salary' name='salary' onChange={this.handleChange} value={salary} />
@@ -120,6 +121,7 @@ class FinanceAI extends Component {
                     
                     
                 </RightContainer>
+                <BottomBarMobile />
             </FinanceAIContainer>
         )
     }

@@ -28,7 +28,7 @@ const Sidebar = () => {
                                 <MenuItem as={Link} to="/transactions" id="transactions" activ={activeTabItem}><FaMoneyBillWave /> Transactions</MenuItem>
                                 <MenuItem as={Link} to="/budgets" id="budgets" activ={activeTabItem}><FaWallet /> Budgets</MenuItem>
                                 <MenuItem as={Link} to="/analytics" id="analytics" activ={activeTabItem}><FaChartLine /> Analytics</MenuItem>
-                                <MenuItem as={Link} to="/finance_ai" id="finance-ai" activ={activeTabItem}><FaRobot /> Finance AI</MenuItem>
+                                <MenuItem as={Link} to="/finance_ai" id="finance_ai" activ={activeTabItem}><FaRobot /> Finance AI</MenuItem>
                             </Menu>
                             <BottomSidebarContainer>
                                 <AvatarContainer href='/user-profile'><RxAvatar style={{marginRight: '10px', fontSize: '22px', marginLeft: '10px'}} />Profile</AvatarContainer>

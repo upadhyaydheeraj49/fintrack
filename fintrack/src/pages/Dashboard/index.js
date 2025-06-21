@@ -1,12 +1,15 @@
 import axios from 'axios';
 import Cookies from 'js-cookie';
-import React, { Component } from 'react';
+import { useNavigate } from 'react-router-dom';
+import {React, Component } from 'react';
 import { ThreeDots } from 'react-loader-spinner';
+import { IoLogOutOutline } from "react-icons/io5";
 import { Bar, BarChart, CartesianGrid, Legend, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts';
 import errorView from '../../assets/images/error-view.png';
 import globe from '../../assets/images/globe.png';
 import Sidebar from '../../components/Sidebar';
-import { BalanceCard, CategoryCard, ChartContainer, Container, DashboardContainer, FailureContainer, FailureImage, GlobeImage, Header, LoaderContainer, OptionEl, RightContainer, SelectEl, SummaryCard, SummaryCards, TopCategories, RightCard } from './styledComponents';
+import { BalanceCard, CategoryCard, ChartContainer, Container, DashboardContainer, FailureContainer, FailureImage, GlobeImage, Header, LoaderContainer, OptionEl, RightContainer, SelectEl, SummaryCard, SummaryCards, TopCategories, RightCard, ErrorText } from './styledComponents';
+import BottomBarMobile from '../../components/BottomBarMobile';
 // Failure View Component
 const FailureView = () => (
     <FailureContainer>
@@ -31,11 +34,7 @@ const Loader = () => (
     </LoaderContainer>
 );
 
-/*
-const IconsObj = {
-    'Education' : ''
-}
-*/
+
 
 class Dashboard extends Component {
     state = {
@@ -103,6 +102,11 @@ class Dashboard extends Component {
         }
     };
 
+    onLogout = () => {
+        Cookies.remove("jwtToken");
+        window.location.reload(true)
+    }
+
     renderDashboard = () => {
         const { balance, transactionCount, totalSpent, totalSavings, categories, costsData, filterType, userData } = this.state;
         const {fullName} = userData
@@ -114,12 +118,14 @@ class Dashboard extends Component {
                 <Container>
                     <Header>
                         <h2 style={{color: '#002147'}}>Dashboard</h2>
+                        <IoLogOutOutline onClick={this.onLogout} style={{fontSize: '25px'}} />
                     </Header>
                     <h2 style={{color: '#171f46'}}>Welcome, {firstName}</h2>
                     <BalanceCard>
                         <div style={{padding: '20px'}}>
                             <h2 style={{fontSize: '28px', color: '#6b6868', fontWeight: '500', margin: '0px'}}>Your balance:</h2>
                             <h1 style={{margin: '5px', color: '#171f46'}}>₹{balance.toLocaleString()}</h1>
+                            {balance <= 0 &&<ErrorText>Your balance is running low.</ErrorText>}
                         </div>
                         <GlobeImage src={globe} alt="globe" />
                     </BalanceCard>
@@ -182,6 +188,7 @@ class Dashboard extends Component {
                         <a style={{color: '#0000ff', textDecoration: 'none'}} href="/analytics">Visualize here</a>
                     </RightCard>
                 </RightContainer>
+                <BottomBarMobile />
         </DashboardContainer>
         );
     };

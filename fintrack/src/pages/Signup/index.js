@@ -73,7 +73,7 @@ class Signup extends Component {
                         alt="website logo"
                       />
             <Title>Create Account</Title>
-            <form onSubmit={this.handleSubmit}>
+            <form style={{padding: '20px'}} onSubmit={this.handleSubmit}>
                 <Label htmlFor='fullname'>FULL NAME</Label>
               <Input
                 id="fullname"

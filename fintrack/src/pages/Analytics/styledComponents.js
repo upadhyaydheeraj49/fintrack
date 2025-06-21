@@ -4,12 +4,21 @@ import cardImage from '../../assets/images/cardImage.jpg';
 export const AnalyticsContainer = styled.div`
   max-width: 100vw;
   display: flex;
+  flex-direction: column;
+  @media screen and (width >899px) {
+    flex-direction: row;
+}
 `
 export const Container = styled.div`
   padding: 20px;
-  width: 70vw;
-  height: 100vh;
-  overflow-y: auto;
+  padding-bottom: 60px;
+  width: 100%;
+  
+  @media screen and (width >899px) {
+    flex-direction: row;
+    height: 100vh;
+    overflow-y: auto;
+}
   &&::-webkit-scrollbar {
             display: none;
 }
@@ -65,7 +74,7 @@ export const RightCard = styled.div`
 width: 70%;
 max-width: 500px;
 max-height: 250px;
-display: none;
+display: block;
 background-image: url(${cardImage});
 background-size: cover;
 border-radius: 10px;

@@ -7,6 +7,7 @@ export const StyledButton = styled.button`
   cursor: pointer;
   transition: background 0.3s;
   border: none;
+  margin: 5px;
   
   ${(props) =>
     props.variant === 'outline' &&
