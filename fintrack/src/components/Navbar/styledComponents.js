@@ -13,7 +13,10 @@ padding: 15px 10%;
 
 `
 export const NavLogo = styled.img`
-width: 150px;`
+width: 150px;
+@media screen and (width <900px) {
+    width: 100px;
+}`
 
 export const NavItemsContainer = styled.ul`
 list-style-type: none;

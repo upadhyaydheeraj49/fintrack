@@ -31,6 +31,9 @@ font-size: 45px;
 font-family: 'Roboto';
 font-weight: 700;
 color: #E8F1FA;
+@media screen and (width <900px) {
+    font-size: 35px;
+}
 `
 export const BannerHeadingSpan = styled.span`
 color: #2277EC;
